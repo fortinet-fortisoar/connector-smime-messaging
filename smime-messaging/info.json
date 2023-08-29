@@ -1,0 +1,135 @@
+{
+  "name": "smime-messaging",
+  "version": "1.0.0",
+  "label": "S/MIME Messaging",
+  "description": "Secure/Multipurpose Internet Mail Extensions (S/MIME) is an email security protocol that uses encryption to protect the confidentiality and integrity of email messages. S/MIME can be used to encrypt email messages or digitally sign email messages",
+  "publisher": "Fortinet",
+  "cs_approved": true,
+  "cs_compatible": true,
+  "help_online": "",
+  "icon_small_name": "small.png",
+  "icon_large_name": "large.png",
+  "category": "Email Security",
+  "configuration": {
+    "fields": [
+      {
+        "title": "Public Key",
+        "description": "Specify the Public key to access the S/MIME Messaging to which you will connect and perform the automated operations",
+        "required": true,
+        "editable": true,
+        "visible": true,
+        "type": "file",
+        "name": "public_key",
+        "tooltip": "Specify the Public key to access the S/MIME Messaging to which you will connect and perform the automated operations"
+      },
+      {
+        "title": "Private Key",
+        "description": "Specify the Private key to access the S/MIME Messaging to which you will connect and perform the automated operations",
+        "required": true,
+        "editable": true,
+        "visible": true,
+        "type": "file",
+        "name": "private_key",
+        "tooltip": "Specify the Private key to access the S/MIME Messaging to which you will connect and perform the automated operations"
+      }
+    ]
+  },
+  "operations": [
+    {
+      "operation": "sign_email",
+      "title": "Sign Email",
+      "description": "Generate an S/MIME-signed message.",
+      "category": "investigation",
+      "annotation": "sign_email",
+      "enabled": true,
+      "parameters": [
+        {
+          "title": "Message Body",
+          "description": "Specify the message body to send.",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "body"
+        }
+      ],
+      "output_schema": {
+        "SMIME.Signed.Email": {
+          "message": ""
+        }
+      }
+    },
+    {
+      "operation": "verify_sign",
+      "title": "Verify Sign",
+      "description": "Verifies the signature of the message. Note: Specify the signed email with .p7 extension",
+      "category": "investigation",
+      "annotation": "verify_sign",
+      "enabled": true,
+      "parameters": [
+        {
+          "title": "File IRI/Path",
+          "description": "Specify the file IRI/path where the file is located. File IRI is an attribute of a file which is in turn an attribute of an attachment or an indicator. NOTE: The file name is taken from the tmp directory.",
+          "name": "file_iri",
+          "type": "text",
+          "visible": true,
+          "editable": true,
+          "required": true,
+          "tooltip": "Specify the file IRI/path where the file is located. File IRI is an attribute of a file which is in turn an attribute of an attachment or an indicator. NOTE: The file name is taken from the tmp directory."
+        }
+      ],
+      "output_schema": {
+        "result": ""
+      }
+    },
+    {
+      "operation": "encrypt_email",
+      "title": "Encrypt Email",
+      "description": "Generate an S/MIME-encrypted message",
+      "category": "investigation",
+      "annotation": "encrypt_email",
+      "enabled": true,
+      "parameters": [
+        {
+          "title": "Message Body",
+          "description": "Specify the message body to encrypt.",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "body"
+        }
+      ],
+      "output_schema": {
+        "SMIME.Encrypted.Email": {
+          "message": ""
+        }
+      }
+    },
+    {
+      "operation": "decrypt_email",
+      "title": "Decrypt Email",
+      "description": "Decrypts the message. Note: Specify the signed email with .p7 extension",
+      "category": "investigation",
+      "annotation": "decrypt_email",
+      "enabled": true,
+      "parameters": [
+        {
+          "title": "File IRI/Path",
+          "description": "Specify the file IRI/path where the file is located. File IRI is an attribute of a file which is in turn an attribute of an attachment or an indicator. NOTE: The file name is taken from the tmp directory.",
+          "name": "file_iri",
+          "type": "text",
+          "visible": true,
+          "editable": true,
+          "required": true,
+          "tooltip": "Specify the file IRI/path where the file is located. File IRI is an attribute of a file which is in turn an attribute of an attachment or an indicator. NOTE: The file name is taken from the tmp directory."
+        }
+      ],
+      "output_schema": {
+        "SMIME.Decrypted.Email": {
+          "message": ""
+        }
+      }
+    }
+  ]
+}

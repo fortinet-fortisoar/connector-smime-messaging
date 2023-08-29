@@ -1,0 +1,456 @@
+{
+  "type": "workflow_collections",
+  "data": [
+    {
+      "@type": "WorkflowCollection",
+      "name": "Sample - S/MIME Messaging - 1.0.0",
+      "description": null,
+      "visible": true,
+      "image": null,
+      "uuid": "5dd5ef1f-7fd5-423c-963b-1cc8735f2f01",
+      "id": 81,
+      "deletedAt": null,
+      "importedBy": [],
+      "recordTags": [
+        "smime-messaging"
+      ],
+      "workflows": [
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Encrypt Email",
+          "aliasName": null,
+          "tag": null,
+          "description": "Generate an S/MIME-encrypted message",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1692989781,
+          "collection": "/api/3/workflow_collections/5dd5ef1f-7fd5-423c-963b-1cc8735f2f01",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/d1552455-f7b3-465f-bf91-80ca28b52e01",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Encrypt Email",
+              "description": null,
+              "arguments": {
+                "name": "S/MIME Messaging",
+                "config": "a9e6ebcb-3444-43c5-b226-aa170144add3",
+                "params": {
+                  "body": "Hello World"
+                },
+                "version": "1.0.0",
+                "connector": "smime-messaging",
+                "operation": "encrypt_email",
+                "operationTitle": "Encrypt Email",
+                "pickFromTenant": false,
+                "step_variables": []
+              },
+              "status": null,
+              "top": "165",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "group": null,
+              "uuid": "c3f7f300-dee0-40c5-aee2-3df2976947fb"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "0827f44f-b9dd-4b92-99fd-2531cd77e245",
+                "title": "S/MIME Messaging: Encrypt Email",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "params": [],
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "showToasterMessage": {
+                  "visible": false,
+                  "messageVisible": true
+                },
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "30",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "group": null,
+              "uuid": "d1552455-f7b3-465f-bf91-80ca28b52e01"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Start -> Encrypt Email",
+              "targetStep": "/api/3/workflow_steps/c3f7f300-dee0-40c5-aee2-3df2976947fb",
+              "sourceStep": "/api/3/workflow_steps/d1552455-f7b3-465f-bf91-80ca28b52e01",
+              "label": null,
+              "isExecuted": false,
+              "group": null,
+              "uuid": "9193bc8c-6d1b-49d8-8ff3-dccef1463087"
+            }
+          ],
+          "groups": [],
+          "priority": "/api/3/picklists/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+          "uuid": "7f3bb1a7-9b82-49ab-83d7-d9047629cfee",
+          "id": 1178,
+          "owners": [],
+          "isPrivate": false,
+          "deletedAt": null,
+          "importedBy": [],
+          "recordTags": [
+            "smime-messaging"
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Sign Email",
+          "aliasName": null,
+          "tag": null,
+          "description": "Generate an S/MIME-signed message.",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1692989721,
+          "collection": "/api/3/workflow_collections/5dd5ef1f-7fd5-423c-963b-1cc8735f2f01",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/ea513bed-ea73-4a6b-9727-334dd44143cc",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Sign Email",
+              "description": null,
+              "arguments": {
+                "name": "S/MIME Messaging",
+                "config": "a9e6ebcb-3444-43c5-b226-aa170144add3",
+                "params": {
+                  "body": "Hello World"
+                },
+                "version": "1.0.0",
+                "connector": "smime-messaging",
+                "operation": "sign_email",
+                "operationTitle": "Sign Email",
+                "pickFromTenant": false,
+                "step_variables": []
+              },
+              "status": null,
+              "top": "165",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "group": null,
+              "uuid": "0b579b13-d654-4f84-b1ac-b8ae3b383c37"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "bbbc23df-5324-423a-ba22-7cf88dfb1f04",
+                "title": "S/MIME Messaging: Sign Email",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "params": [],
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "showToasterMessage": {
+                  "visible": false,
+                  "messageVisible": true
+                },
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "30",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "group": null,
+              "uuid": "ea513bed-ea73-4a6b-9727-334dd44143cc"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Start -> Sign Email",
+              "targetStep": "/api/3/workflow_steps/0b579b13-d654-4f84-b1ac-b8ae3b383c37",
+              "sourceStep": "/api/3/workflow_steps/ea513bed-ea73-4a6b-9727-334dd44143cc",
+              "label": null,
+              "isExecuted": false,
+              "group": null,
+              "uuid": "e1f62ef0-f16c-4fdb-9945-eba7d86c9e10"
+            }
+          ],
+          "groups": [],
+          "priority": "/api/3/picklists/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+          "uuid": "a6882f46-8603-471b-97d8-c56908aad083",
+          "id": 1177,
+          "owners": [],
+          "isPrivate": false,
+          "deletedAt": null,
+          "importedBy": [],
+          "recordTags": [
+            "smime-messaging"
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Decrypt Email",
+          "aliasName": null,
+          "tag": null,
+          "description": "Decrypts the message. Note: Specify the signed email with .p7 extension",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1692990001,
+          "collection": "/api/3/workflow_collections/5dd5ef1f-7fd5-423c-963b-1cc8735f2f01",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/cd39d0dc-2e82-4d81-bdd2-c923fdee55dd",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Decrypt Email",
+              "description": null,
+              "arguments": {
+                "name": "S/MIME Messaging",
+                "config": "a9e6ebcb-3444-43c5-b226-aa170144add3",
+                "params": {
+                  "file_iri": "{{vars.input.records[0].file['@id']}}"
+                },
+                "version": "1.0.0",
+                "connector": "smime-messaging",
+                "operation": "decrypt_email",
+                "operationTitle": "Verify Sign",
+                "pickFromTenant": false,
+                "step_variables": []
+              },
+              "status": null,
+              "top": "165",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "group": null,
+              "uuid": "81848c23-39a7-49cc-8f76-eea7688b60df"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "ad88bfa9-000a-4974-8984-17993070bcf5",
+                "title": "S/MIME Messaging: Decrypt Email",
+                "resources": [
+                  "attachments",
+                  "indicators"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "params": [],
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "displayConditions": {
+                  "indicators": {
+                    "sort": [],
+                    "limit": 30,
+                    "logic": "AND",
+                    "filters": []
+                  },
+                  "attachments": {
+                    "sort": [],
+                    "limit": 30,
+                    "logic": "AND",
+                    "filters": []
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": false,
+                "showToasterMessage": {
+                  "visible": false,
+                  "messageVisible": true
+                },
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "30",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "group": null,
+              "uuid": "cd39d0dc-2e82-4d81-bdd2-c923fdee55dd"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Start -> Decrypt Email",
+              "targetStep": "/api/3/workflow_steps/81848c23-39a7-49cc-8f76-eea7688b60df",
+              "sourceStep": "/api/3/workflow_steps/cd39d0dc-2e82-4d81-bdd2-c923fdee55dd",
+              "label": null,
+              "isExecuted": false,
+              "group": null,
+              "uuid": "d544b7ce-4e34-435c-a3d7-9b63c5987f5c"
+            }
+          ],
+          "groups": [],
+          "priority": "/api/3/picklists/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+          "uuid": "b6a376b9-9e64-4622-b429-20809cf067e4",
+          "id": 1180,
+          "owners": [],
+          "isPrivate": false,
+          "deletedAt": null,
+          "importedBy": [],
+          "recordTags": [
+            "smime-messaging"
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Verify Sign",
+          "aliasName": null,
+          "tag": null,
+          "description": "Verifies the signature of the message. Note: Specify the signed email with .p7 extension",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1692989931,
+          "collection": "/api/3/workflow_collections/5dd5ef1f-7fd5-423c-963b-1cc8735f2f01",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/d108d5e9-15fe-42a3-87fd-afeea9b03519",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "4f715550-a449-4d9b-b01f-bc13d575a762",
+                "title": "S/MIME Messaging: Verify Sign",
+                "resources": [
+                  "attachments",
+                  "indicators"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "params": [],
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "displayConditions": {
+                  "alerts": {
+                    "sort": [],
+                    "limit": 30,
+                    "logic": "AND",
+                    "filters": []
+                  },
+                  "indicators": {
+                    "sort": [],
+                    "limit": 30,
+                    "logic": "AND",
+                    "filters": []
+                  },
+                  "attachments": {
+                    "sort": [],
+                    "limit": 30,
+                    "logic": "AND",
+                    "filters": []
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": false,
+                "showToasterMessage": {
+                  "visible": false,
+                  "messageVisible": true
+                },
+                "singleRecordExecution": true
+              },
+              "status": null,
+              "top": "30",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "group": null,
+              "uuid": "d108d5e9-15fe-42a3-87fd-afeea9b03519"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Verify Sign",
+              "description": null,
+              "arguments": {
+                "name": "S/MIME Messaging",
+                "config": "a9e6ebcb-3444-43c5-b226-aa170144add3",
+                "params": {
+                  "file_iri": "{{vars.input.records[0].file['@id']}}"
+                },
+                "version": "1.0.0",
+                "connector": "smime-messaging",
+                "operation": "verify_sign",
+                "operationTitle": "Verify Sign",
+                "pickFromTenant": false,
+                "step_variables": []
+              },
+              "status": null,
+              "top": "165",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "group": null,
+              "uuid": "4825423a-4dec-40aa-8934-eff563fce16e"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Start -> Verify Sign",
+              "targetStep": "/api/3/workflow_steps/4825423a-4dec-40aa-8934-eff563fce16e",
+              "sourceStep": "/api/3/workflow_steps/d108d5e9-15fe-42a3-87fd-afeea9b03519",
+              "label": null,
+              "isExecuted": false,
+              "group": null,
+              "uuid": "aa959f44-6a87-4c2d-9f1f-ed86504d4903"
+            }
+          ],
+          "groups": [],
+          "priority": "/api/3/picklists/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+          "uuid": "c39499b6-6c7a-4dee-a721-3cd480f4c2c1",
+          "id": 1179,
+          "owners": [],
+          "isPrivate": false,
+          "deletedAt": null,
+          "importedBy": [],
+          "recordTags": [
+            "smime-messaging"
+          ]
+        }
+      ]
+    }
+  ],
+  "exported_tags": [
+    "smime-messaging"
+  ]
+}

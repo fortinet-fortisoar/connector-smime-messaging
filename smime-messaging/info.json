@@ -49,7 +49,7 @@
           "required": true,
           "editable": true,
           "visible": true,
-          "type": "text",
+          "type": "richtext",
           "name": "body"
         }
       ],
@@ -69,13 +69,13 @@
       "parameters": [
         {
           "title": "File IRI/Path",
-          "description": "Specify the file IRI/path where the file is located. File IRI is an attribute of a file which is in turn an attribute of an attachment or an indicator. NOTE: The file name is taken from the tmp directory.",
+          "description": "Specify the file IRI/path where the file is located. File IRI is an attribute of a file which is in turn an attribute of an attachment or an indicator. NOTE: If File Path is specified, then path is taken from the tmp directory.",
           "name": "file_iri",
           "type": "text",
           "visible": true,
           "editable": true,
           "required": true,
-          "tooltip": "Specify the file IRI/path where the file is located. File IRI is an attribute of a file which is in turn an attribute of an attachment or an indicator. NOTE: The file name is taken from the tmp directory."
+          "tooltip": "Specify the file IRI/path where the file is located. File IRI is an attribute of a file which is in turn an attribute of an attachment or an indicator. NOTE: If File Path is specified, then path is taken from the tmp directory."
         }
       ],
       "output_schema": {
@@ -96,7 +96,7 @@
           "required": true,
           "editable": true,
           "visible": true,
-          "type": "text",
+          "type": "richtext",
           "name": "body"
         }
       ],
@@ -116,13 +116,13 @@
       "parameters": [
         {
           "title": "File IRI/Path",
-          "description": "Specify the file IRI/path where the file is located. File IRI is an attribute of a file which is in turn an attribute of an attachment or an indicator. NOTE: The file name is taken from the tmp directory.",
+          "description": "Specify the file IRI/path where the file is located. File IRI is an attribute of a file which is in turn an attribute of an attachment or an indicator. NOTE: If File Path is specified, then path is taken from the tmp directory.",
           "name": "file_iri",
           "type": "text",
           "visible": true,
           "editable": true,
           "required": true,
-          "tooltip": "Specify the file IRI/path where the file is located. File IRI is an attribute of a file which is in turn an attribute of an attachment or an indicator. NOTE: The file name is taken from the tmp directory."
+          "tooltip": "Specify the file IRI/path where the file is located. File IRI is an attribute of a file which is in turn an attribute of an attachment or an indicator. NOTE: If File Path is specified, then path is taken from the tmp directory."
         }
       ],
       "output_schema": {

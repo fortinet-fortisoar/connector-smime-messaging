@@ -68,14 +68,24 @@
       "enabled": true,
       "parameters": [
         {
-          "title": "File IRI/Path",
-          "description": "Specify the file IRI/path where the file is located. File IRI is an attribute of a file which is in turn an attribute of an attachment or an indicator. NOTE: If File Path is specified, then path is taken from the tmp directory.",
+          "title": "Sender's Public Key",
+          "description": "Specify the Public key of the sender's based on which you want to verify the signature of the message.",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "file",
+          "name": "sender_public_key",
+          "tooltip": "Specify the Public key of the sender's based on which you want to verify the signature of the message."
+        },
+        {
+          "title": "File IRI/Name",
+          "description": "Specify the file IRI/name where the file is located. File IRI is an attribute of a file which is in turn an attribute of an attachment or an indicator. NOTE: If File Path is specified, then path is taken from the tmp directory.",
           "name": "file_iri",
           "type": "text",
           "visible": true,
           "editable": true,
           "required": true,
-          "tooltip": "Specify the file IRI/path where the file is located. File IRI is an attribute of a file which is in turn an attribute of an attachment or an indicator. NOTE: If File Path is specified, then path is taken from the tmp directory."
+          "tooltip": "Specify the file IRI/name where the file is located. File IRI is an attribute of a file which is in turn an attribute of an attachment or an indicator. NOTE: If File Path is specified, then path is taken from the tmp directory."
         }
       ],
       "output_schema": {
@@ -90,6 +100,16 @@
       "annotation": "encrypt_email",
       "enabled": true,
       "parameters": [
+        {
+          "title": "Receiver's Public Key",
+          "description": "Specify the Public key of the receiver's based on which you want to encrypt the message.",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "file",
+          "name": "receiver_public_key",
+          "tooltip": "Specify the Public key of the receiver's based on which you want to encrypt the message."
+        },
         {
           "title": "Message Body",
           "description": "Specify the message body to encrypt.",
@@ -115,14 +135,14 @@
       "enabled": true,
       "parameters": [
         {
-          "title": "File IRI/Path",
-          "description": "Specify the file IRI/path where the file is located. File IRI is an attribute of a file which is in turn an attribute of an attachment or an indicator. NOTE: If File Path is specified, then path is taken from the tmp directory.",
+          "title": "File IRI/Name",
+          "description": "Specify the file IRI/name where the file is located. File IRI is an attribute of a file which is in turn an attribute of an attachment or an indicator. NOTE: If File Path is specified, then path is taken from the tmp directory.",
           "name": "file_iri",
           "type": "text",
           "visible": true,
           "editable": true,
           "required": true,
-          "tooltip": "Specify the file IRI/path where the file is located. File IRI is an attribute of a file which is in turn an attribute of an attachment or an indicator. NOTE: If File Path is specified, then path is taken from the tmp directory."
+          "tooltip": "Specify the file IRI/name where the file is located. File IRI is an attribute of a file which is in turn an attribute of an attachment or an indicator. NOTE: If File Path is specified, then path is taken from the tmp directory."
         }
       ],
       "output_schema": {

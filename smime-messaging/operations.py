@@ -37,8 +37,6 @@ class SMIMEMessaging(object):
         self.private_key_file = private_key_file.name
         private_key_file.close()
 
-        self.verify_ssl = config.get('verify_ssl')
-
 
 def makebuf(text):
     return BIO.MemoryBuffer(text)
@@ -74,6 +72,16 @@ def sign_email(config, params, *args, **kwargs):
 def verify_sign(config, params, *args, **kwargs):
     try:
         client = SMIMEMessaging(config)
+
+        if isinstance(params.get('sender_public_key', {}), dict) and params.get('sender_public_key', {}).get(
+                '@type') == "File":
+            url = params.get('sender_public_key', {}).get('@id')
+            public_key = make_request(url, 'GET')
+        sender_public_key_file = NamedTemporaryFile(delete=False)
+        sender_public_key_file.write(bytes(public_key, 'utf-8'))
+        sender_public_key = sender_public_key_file.name
+        sender_public_key_file.close()
+
         # Require File Path
         if params.get('file_iri') and '/api/3/files/' not in params.get('file_iri'):
             file_path = os.path.join(TMP_PATH, params.get('file_iri'))
@@ -83,7 +91,7 @@ def verify_sign(config, params, *args, **kwargs):
             file_path = TMP_PATH + dw_file_md['cyops_file_path']
 
         # Load the signer's cert.
-        x509 = X509.load_cert(client.public_key_file)
+        x509 = X509.load_cert(sender_public_key)
         sk = X509.X509_Stack()
         sk.push(x509)
         client.smime.set_x509_stack(sk)
@@ -91,7 +99,7 @@ def verify_sign(config, params, *args, **kwargs):
         # Load the signer's CA cert. In this case, because the signer's
         # cert is self-signed, it is the signer's cert itself.
         st = X509.X509_Store()
-        st.load_info(client.public_key_file)
+        st.load_info(sender_public_key)
         client.smime.set_x509_store(st)
 
         # Load the data, verify it.
@@ -107,13 +115,23 @@ def verify_sign(config, params, *args, **kwargs):
 def encrypt_email(config, params, *args, **kwargs):
     try:
         client = SMIMEMessaging(config)
+
+        if isinstance(params.get('receiver_public_key', {}), dict) and params.get('receiver_public_key', {}).get(
+                '@type') == "File":
+            url = params.get('receiver_public_key', {}).get('@id')
+            public_key = make_request(url, 'GET')
+        receiver_public_key_file = NamedTemporaryFile(delete=False)
+        receiver_public_key_file.write(bytes(public_key, 'utf-8'))
+        receiver_public_key = receiver_public_key_file.name
+        receiver_public_key_file.close()
+
         message_body = params.get('body', '').encode('utf-8')
 
         # Make a MemoryBuffer of the message.
         buf = makebuf(message_body)
 
         # Load target cert to encrypt to.
-        x509 = X509.load_cert(client.public_key_file)
+        x509 = X509.load_cert(receiver_public_key)
         sk = X509.X509_Stack()
         sk.push(x509)
         client.smime.set_x509_stack(sk)
@@ -169,11 +187,10 @@ def decrypt_email(config, params, *args, **kwargs):
 
 def check_health(config):
     try:
-        client = SMIMEMessaging(config)
-        if client.public_key_file and client.private_key_file:
+        if sign_email(config, params={'body': 'Hello World'}):
             return True
     except Exception as err:
-        raise ConnectorError(str(err))
+        raise ConnectorError("Invalid Public/Private Key !!!")
 
 
 operations = {

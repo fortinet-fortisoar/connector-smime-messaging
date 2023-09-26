@@ -44,6 +44,16 @@
       "enabled": true,
       "parameters": [
         {
+          "title": "File Name",
+          "description": "Specify the file name that will be given to the signed p7 file in FortiSOAR Attachment's module. NOTE: Do not provide the extension",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "file_name",
+          "tooltip": "Specify the file name that will be given to the signed p7 file in FortiSOAR Attachment's module. NOTE: Do not provide the extension"
+        },
+        {
           "title": "Message Body",
           "description": "Specify the message body to send.",
           "required": true,
@@ -54,9 +64,70 @@
         }
       ],
       "output_schema": {
-        "SMIME.Signed.Email": {
-          "message": ""
-        }
+        "id": "",
+        "@id": "",
+        "file": {
+          "id": "",
+          "@id": "",
+          "size": "",
+          "uuid": "",
+          "@type": "",
+          "assignee": "",
+          "filename": "",
+          "metadata": [],
+          "mimeType": "",
+          "thumbnail": "",
+          "uploadDate": ""
+        },
+        "name": "",
+        "type": "",
+        "uuid": "",
+        "@type": "",
+        "tasks": [],
+        "alerts": [],
+        "assets": [],
+        "owners": [],
+        "people": [],
+        "@context": "",
+        "assignee": "",
+        "comments": [],
+        "warrooms": [],
+        "incidents": [],
+        "createDate": "",
+        "createUser": {
+          "id": "",
+          "@id": "",
+          "name": "",
+          "uuid": "",
+          "@type": "",
+          "avatar": "",
+          "userId": "",
+          "userType": "",
+          "createDate": "",
+          "createUser": "",
+          "modifyDate": "",
+          "modifyUser": ""
+        },
+        "indicators": [],
+        "modifyDate": "",
+        "modifyUser": {
+          "id": "",
+          "@id": "",
+          "name": "",
+          "uuid": "",
+          "@type": "",
+          "avatar": "",
+          "userId": "",
+          "userType": "",
+          "createDate": "",
+          "createUser": "",
+          "modifyDate": "",
+          "modifyUser": ""
+        },
+        "recordTags": [],
+        "userOwners": [],
+        "workspaces": [],
+        "description": ""
       }
     },
     {
@@ -69,23 +140,23 @@
       "parameters": [
         {
           "title": "Sender's Public Key",
-          "description": "Specify the Public key of the sender's based on which you want to verify the signature of the message.",
+          "description": "Specify the sender's public key which will be used to verify the sender's signature.",
           "required": true,
           "editable": true,
           "visible": true,
           "type": "file",
           "name": "sender_public_key",
-          "tooltip": "Specify the Public key of the sender's based on which you want to verify the signature of the message."
+          "tooltip": "Provide the Sender's Public Key which will be used to verify the sender's signature."
         },
         {
-          "title": "File IRI/Name",
-          "description": "Specify the file IRI/name where the file is located. File IRI is an attribute of a file which is in turn an attribute of an attachment or an indicator. NOTE: If File Path is specified, then path is taken from the tmp directory.",
+          "title": "Attachment/File IRI",
+          "description": "Specify the Attachment/File IRI to access the signed p7 file from FortiSOAR Attachment's module.",
           "name": "file_iri",
           "type": "text",
           "visible": true,
           "editable": true,
           "required": true,
-          "tooltip": "Specify the file IRI/name where the file is located. File IRI is an attribute of a file which is in turn an attribute of an attachment or an indicator. NOTE: If File Path is specified, then path is taken from the tmp directory."
+          "tooltip": "Specify the Attachment/File IRI to access the signed p7 file from FortiSOAR Attachment's module."
         }
       ],
       "output_schema": {
@@ -102,13 +173,23 @@
       "parameters": [
         {
           "title": "Receiver's Public Key",
-          "description": "Specify the Public key of the receiver's based on which you want to encrypt the message.",
+          "description": "Specify the receipent's public key for whom you wish to encrypt the message.",
           "required": true,
           "editable": true,
           "visible": true,
           "type": "file",
           "name": "receiver_public_key",
-          "tooltip": "Specify the Public key of the receiver's based on which you want to encrypt the message."
+          "tooltip": "Provide the Receipent's Public Key for whom you wish to encrypt the message."
+        },
+        {
+          "title": "File Name",
+          "description": "Specify the file name that will be given to the encrypted p7 file in FortiSOAR Attachment's module. NOTE: Do not provide the extension",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "file_name",
+          "tooltip": "Specify the file name that will be given to the encrypted p7 file in FortiSOAR Attachment's module. NOTE: Do not provide the extension"
         },
         {
           "title": "Message Body",
@@ -121,9 +202,70 @@
         }
       ],
       "output_schema": {
-        "SMIME.Encrypted.Email": {
-          "message": ""
-        }
+        "id": "",
+        "@id": "",
+        "file": {
+          "id": "",
+          "@id": "",
+          "size": "",
+          "uuid": "",
+          "@type": "",
+          "assignee": "",
+          "filename": "",
+          "metadata": [],
+          "mimeType": "",
+          "thumbnail": "",
+          "uploadDate": ""
+        },
+        "name": "",
+        "type": "",
+        "uuid": "",
+        "@type": "",
+        "tasks": [],
+        "alerts": [],
+        "assets": [],
+        "owners": [],
+        "people": [],
+        "@context": "",
+        "assignee": "",
+        "comments": [],
+        "warrooms": [],
+        "incidents": [],
+        "createDate": "",
+        "createUser": {
+          "id": "",
+          "@id": "",
+          "name": "",
+          "uuid": "",
+          "@type": "",
+          "avatar": "",
+          "userId": "",
+          "userType": "",
+          "createDate": "",
+          "createUser": "",
+          "modifyDate": "",
+          "modifyUser": ""
+        },
+        "indicators": [],
+        "modifyDate": "",
+        "modifyUser": {
+          "id": "",
+          "@id": "",
+          "name": "",
+          "uuid": "",
+          "@type": "",
+          "avatar": "",
+          "userId": "",
+          "userType": "",
+          "createDate": "",
+          "createUser": "",
+          "modifyDate": "",
+          "modifyUser": ""
+        },
+        "recordTags": [],
+        "userOwners": [],
+        "workspaces": [],
+        "description": ""
       }
     },
     {
@@ -135,14 +277,14 @@
       "enabled": true,
       "parameters": [
         {
-          "title": "File IRI/Name",
-          "description": "Specify the file IRI/name where the file is located. File IRI is an attribute of a file which is in turn an attribute of an attachment or an indicator. NOTE: If File Path is specified, then path is taken from the tmp directory.",
+          "title": "Attachment/File IRI",
+          "description": "Specify the Attachment/File IRI to access the encrypted p7 file from FortiSOAR Attachment's module.",
           "name": "file_iri",
           "type": "text",
           "visible": true,
           "editable": true,
           "required": true,
-          "tooltip": "Specify the file IRI/name where the file is located. File IRI is an attribute of a file which is in turn an attribute of an attachment or an indicator. NOTE: If File Path is specified, then path is taken from the tmp directory."
+          "tooltip": "Specify the Attachment/File IRI to access the encrypted p7 file from FortiSOAR Attachment's module."
         }
       ],
       "output_schema": {

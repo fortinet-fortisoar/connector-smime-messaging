@@ -263,8 +263,7 @@
                 "route": "ad88bfa9-000a-4974-8984-17993070bcf5",
                 "title": "S/MIME Messaging: Decrypt Email",
                 "resources": [
-                  "attachments",
-                  "indicators"
+                  "attachments"
                 ],
                 "inputVariables": [],
                 "step_variables": {
@@ -353,8 +352,7 @@
                 "route": "4f715550-a449-4d9b-b01f-bc13d575a762",
                 "title": "S/MIME Messaging: Verify Sign",
                 "resources": [
-                  "attachments",
-                  "indicators"
+                  "attachments"
                 ],
                 "inputVariables": [],
                 "step_variables": {

@@ -5,6 +5,8 @@
   Copyright end """
 
 import os
+from django.conf import settings
+from connectors.cyops_utilities.builtins import upload_file_to_cyops
 from M2Crypto import BIO, SMIME, X509
 from tempfile import NamedTemporaryFile
 from connectors.cyops_utilities.builtins import download_file_from_cyops, save_file_in_env
@@ -42,8 +44,9 @@ def makebuf(text):
     return BIO.MemoryBuffer(text)
 
 
-def sign_email(config, params, *args, **kwargs):
+def sign_email(config, params, flag=None, *args, **kwargs):
     try:
+        file_name = params.get('file_name') + '.p7'
         client = SMIMEMessaging(config)
         message_body = params.get('body', '')
 
@@ -59,12 +62,14 @@ def sign_email(config, params, *args, **kwargs):
         out = BIO.MemoryBuffer()
         client.smime.write(out, p7, buf, SMIME.PKCS7_TEXT)
         signed = out.read().decode('utf-8')
-        response = {
-            "SMIME.Signed.Email": {
-                "message": signed
-            }
-        }
-        return response
+        if flag:
+            return signed
+        path = os.path.join(settings.TMP_FILE_ROOT, file_name)
+        with open(path, 'w') as fp:
+            fp.write(signed)
+        attach_response = upload_file_to_cyops(file_path=file_name, filename=file_name,
+                                               name=file_name, create_attachment=True)
+        return attach_response
     except Exception as err:
         raise ConnectorError(str(err))
 
@@ -83,12 +88,9 @@ def verify_sign(config, params, *args, **kwargs):
         sender_public_key_file.close()
 
         # Require File Path
-        if params.get('file_iri') and '/api/3/files/' not in params.get('file_iri'):
-            file_path = os.path.join(TMP_PATH, params.get('file_iri'))
-        else:
-            file_iri = params.get('file_iri')
-            dw_file_md = download_file_from_cyops(file_iri)
-            file_path = TMP_PATH + dw_file_md['cyops_file_path']
+        file_iri = params.get('file_iri')
+        dw_file_md = download_file_from_cyops(file_iri)
+        file_path = TMP_PATH + dw_file_md['cyops_file_path']
 
         # Load the signer's cert.
         x509 = X509.load_cert(sender_public_key)
@@ -114,6 +116,7 @@ def verify_sign(config, params, *args, **kwargs):
 
 def encrypt_email(config, params, *args, **kwargs):
     try:
+        file_name = params.get('file_name') + '.p7'
         client = SMIMEMessaging(config)
 
         if isinstance(params.get('receiver_public_key', {}), dict) and params.get('receiver_public_key', {}).get(
@@ -146,12 +149,12 @@ def encrypt_email(config, params, *args, **kwargs):
         out = BIO.MemoryBuffer()
         client.smime.write(out, p7)
         encrypted_message = out.read().decode('utf-8')
-        response = {
-            "SMIME.Encrypted.Email": {
-                "message": encrypted_message
-            }
-        }
-        return response
+        path = os.path.join(settings.TMP_FILE_ROOT, file_name)
+        with open(path, 'w') as fp:
+            fp.write(encrypted_message)
+        attach_response = upload_file_to_cyops(file_path=file_name, filename=file_name,
+                                               name=file_name, create_attachment=True)
+        return attach_response
     except Exception as err:
         raise ConnectorError(str(err))
 
@@ -160,12 +163,9 @@ def decrypt_email(config, params, *args, **kwargs):
     try:
         client = SMIMEMessaging(config)
         # Require File Path
-        if params.get('file_iri') and '/api/3/files/' not in params.get('file_iri'):
-            file_path = os.path.join(TMP_PATH, params.get('file_iri'))
-        else:
-            file_iri = params.get('file_iri')
-            dw_file_md = download_file_from_cyops(file_iri)
-            file_path = TMP_PATH + dw_file_md['cyops_file_path']
+        file_iri = params.get('file_iri')
+        dw_file_md = download_file_from_cyops(file_iri)
+        file_path = TMP_PATH + dw_file_md['cyops_file_path']
 
         # Load private key and cert.
         client.smime.load_key(client.private_key_file, client.public_key_file)
@@ -187,7 +187,7 @@ def decrypt_email(config, params, *args, **kwargs):
 
 def check_health(config):
     try:
-        if sign_email(config, params={'body': 'Hello World'}):
+        if sign_email(config, params={'body': 'Hello World', 'file_name': 'check_health'}, flag=True):
             return True
     except Exception as err:
         raise ConnectorError("Invalid Public/Private Key !!!")

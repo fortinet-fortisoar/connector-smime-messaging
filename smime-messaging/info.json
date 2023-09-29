@@ -2,11 +2,11 @@
   "name": "smime-messaging",
   "version": "1.0.0",
   "label": "S/MIME Messaging",
-  "description": "Secure/Multipurpose Internet Mail Extensions (S/MIME) is an email security protocol that uses encryption to protect the confidentiality and integrity of email messages. S/MIME can be used to encrypt email messages or digitally sign email messages",
+  "description": "Secure/Multipurpose Internet Mail Extensions (S/MIME) is an email security protocol that uses encryption to protect the confidentiality and integrity of email messages. S/MIME can be used to encrypt email messages or digitally sign email messages. \n\n<b><i> Prerequisites: </i></b> User need to install swig using following command: <b><i> yum install swig </i></b>",
   "publisher": "Fortinet",
   "cs_approved": true,
   "cs_compatible": true,
-  "help_online": "",
+  "help_online": "https://docs.fortinet.com/document/fortisoar/1.0.0/s-mime-messaging/695/s-mime-messaging-v1-0-0",
   "icon_small_name": "small.png",
   "icon_large_name": "large.png",
   "category": "Email Security",
@@ -14,23 +14,23 @@
     "fields": [
       {
         "title": "Public Key",
-        "description": "Specify the Public key to access the S/MIME Messaging to which you will connect and perform the automated operations",
+        "description": "Specify the Public key to access the S/MIME Messaging to connect and perform the automated operations",
         "required": true,
         "editable": true,
         "visible": true,
         "type": "file",
         "name": "public_key",
-        "tooltip": "Specify the Public key to access the S/MIME Messaging to which you will connect and perform the automated operations"
+        "tooltip": "Specify the Public key to access the S/MIME Messaging to connect and perform the automated operations"
       },
       {
         "title": "Private Key",
-        "description": "Specify the Private key to access the S/MIME Messaging to which you will connect and perform the automated operations",
+        "description": "Specify the Private key to access the S/MIME Messaging to connect and perform the automated operations",
         "required": true,
         "editable": true,
         "visible": true,
         "type": "file",
         "name": "private_key",
-        "tooltip": "Specify the Private key to access the S/MIME Messaging to which you will connect and perform the automated operations"
+        "tooltip": "Specify the Private key to access the S/MIME Messaging to connect and perform the automated operations"
       }
     ]
   },
@@ -45,13 +45,13 @@
       "parameters": [
         {
           "title": "File Name",
-          "description": "Specify the file name that will be given to the signed p7 file in FortiSOAR Attachment's module. NOTE: Do not provide the extension",
+          "description": "Specify the file name, without the file extension, to be given to the signed p7 file in FortiSOARTM's Attachments module.",
           "required": true,
           "editable": true,
           "visible": true,
           "type": "text",
           "name": "file_name",
-          "tooltip": "Specify the file name that will be given to the signed p7 file in FortiSOAR Attachment's module. NOTE: Do not provide the extension"
+          "tooltip": "Specify the file name, without the file extension, to be given to the signed p7 file in FortiSOARTM's Attachments module."
         },
         {
           "title": "Message Body",
@@ -60,7 +60,8 @@
           "editable": true,
           "visible": true,
           "type": "richtext",
-          "name": "body"
+          "name": "body",
+          "tooltip": "Specify the message body to send."
         }
       ],
       "output_schema": {
@@ -133,30 +134,30 @@
     {
       "operation": "verify_sign",
       "title": "Verify Sign",
-      "description": "Verifies the signature of the message. Note: Specify the signed email with .p7 extension",
+      "description": "Verifies the signature of the message. Note: Specify the signed email with a .p7 extension",
       "category": "investigation",
       "annotation": "verify_sign",
       "enabled": true,
       "parameters": [
         {
           "title": "Sender's Public Key",
-          "description": "Specify the sender's public key which will be used to verify the sender's signature.",
+          "description": "Specify the sender's public key to verify the sender's signature.",
           "required": true,
           "editable": true,
           "visible": true,
           "type": "file",
           "name": "sender_public_key",
-          "tooltip": "Provide the Sender's Public Key which will be used to verify the sender's signature."
+          "tooltip": "Specify the sender's public key to verify the sender's signature."
         },
         {
           "title": "Attachment/File IRI",
-          "description": "Specify the Attachment/File IRI to access the signed p7 file from FortiSOAR Attachment's module.",
+          "description": "Specify the Attachment/File IRI to access the signed p7 file from FortiSOARTM's Attachments module.",
           "name": "file_iri",
           "type": "text",
           "visible": true,
           "editable": true,
           "required": true,
-          "tooltip": "Specify the Attachment/File IRI to access the signed p7 file from FortiSOAR Attachment's module."
+          "tooltip": "Specify the Attachment/File IRI to access the signed p7 file from FortiSOARTM's Attachments module."
         }
       ],
       "output_schema": {
@@ -173,23 +174,23 @@
       "parameters": [
         {
           "title": "Receiver's Public Key",
-          "description": "Specify the receipent's public key for whom you wish to encrypt the message.",
+          "description": "Specify the recipient's public key to encrypt the message.",
           "required": true,
           "editable": true,
           "visible": true,
           "type": "file",
           "name": "receiver_public_key",
-          "tooltip": "Provide the Receipent's Public Key for whom you wish to encrypt the message."
+          "tooltip": "Specify the recipient's public key to encrypt the message."
         },
         {
           "title": "File Name",
-          "description": "Specify the file name that will be given to the encrypted p7 file in FortiSOAR Attachment's module. NOTE: Do not provide the extension",
+          "description": "Specify the file name, without the file extension, to be given to the signed p7 file in FortiSOARTM's Attachments module.",
           "required": true,
           "editable": true,
           "visible": true,
           "type": "text",
           "name": "file_name",
-          "tooltip": "Specify the file name that will be given to the encrypted p7 file in FortiSOAR Attachment's module. NOTE: Do not provide the extension"
+          "tooltip": "Specify the file name, without the file extension, to be given to the signed p7 file in FortiSOARTM's Attachments module."
         },
         {
           "title": "Message Body",
@@ -198,7 +199,8 @@
           "editable": true,
           "visible": true,
           "type": "richtext",
-          "name": "body"
+          "name": "body",
+          "tooltip": "Specify the message body to encrypt."
         }
       ],
       "output_schema": {
@@ -271,20 +273,20 @@
     {
       "operation": "decrypt_email",
       "title": "Decrypt Email",
-      "description": "Decrypts the message. Note: Specify the signed email with .p7 extension",
+      "description": "Decrypts the message. Note: Specify the encrypted email with .p7 extension",
       "category": "investigation",
       "annotation": "decrypt_email",
       "enabled": true,
       "parameters": [
         {
           "title": "Attachment/File IRI",
-          "description": "Specify the Attachment/File IRI to access the encrypted p7 file from FortiSOAR Attachment's module.",
+          "description": "Specify the Attachment/File IRI to access the encrypted p7 file from FortiSOARTM's Attachments module.",
           "name": "file_iri",
           "type": "text",
           "visible": true,
           "editable": true,
           "required": true,
-          "tooltip": "Specify the Attachment/File IRI to access the encrypted p7 file from FortiSOAR Attachment's module."
+          "tooltip": "Specify the Attachment/File IRI to access the encrypted p7 file from FortiSOARTM's Attachments module."
         }
       ],
       "output_schema": {
